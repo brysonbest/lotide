@@ -23,21 +23,21 @@ const assertArraysEqual = function(array1, array2) {
 //function that checks for matching of arrays and returns a boolean
 
 const eqArrays = function(array1, array2) {
-  //checks for blanks; arrays do not have a falsey equivalent
+  //checks if both arrays are blank;
   if (!array1 && !array2) {
     return true;
-  } else if (!array1 || !array2) {
+  }
+  //checks if either array is blank; arrays do not have a falsey equivalent
+  if (!array1 || !array2) {
     return false;
   }
-  //checks for initial matching of array items
+  //check if arrays are equal in length
+  if (array1.length !== array2.length) {
+    return false;
+  }
+  //checks for matching of array items
   for (let i = 0; i < array1.length; i++) {
     if (array1[i] !== array2[i]) {
-      return false;
-    }
-  }
-  //checks for case where array2 may be longer
-  for (let i = 0; i < array2.length; i++) {
-    if (array2[i] !== array1[i]) {
       return false;
     }
   }
@@ -47,8 +47,8 @@ const eqArrays = function(array1, array2) {
 
 
 //test codes
-console.log(without([1, 2, 3], [1])); // => [2, 3]
-console.log(without(["1", "2", "3"], [1, 2, "3"])); // => ["1", "2"])
+//console.log(without([1, 2, 3], [1])); // => [2, 3]
+//console.log(without(["1", "2", "3"], [1, 2, "3"])); // => ["1", "2"])
 
 // Make sure the original array was not altered by the without function
 const words = ["hello", "world", "lighthouse"];
