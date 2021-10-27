@@ -5,7 +5,7 @@ const flatten = function(inputArray) {
     if (Array.isArray(element)) {
       for (let item of element) {
         newArray.push(item);
-      } 
+      }
     } else {
       newArray.push(element);
     }
