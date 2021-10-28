@@ -43,7 +43,6 @@ const eqObjects = function(object1, object2) {
   //compares value at each key within obj1 for matching
   for (const obj of obj1Keys) {
     if (Array.isArray(object1[obj])) {
-
       if (!eqArrays(object1[obj], object2[obj])) {
         return false;
       }
