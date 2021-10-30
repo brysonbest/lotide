@@ -31,3 +31,11 @@ const eqArrays = function(array1, array2) {
   //returns true if no mismatches found
   return true;
 };
+
+//test codes
+
+assertArraysEqual([],[]); //true
+assertArraysEqual([1,2,3,4],[1,2,3,4]); //true
+assertArraysEqual(["yes", "no", "maybe"],["yes", "no", "maybe"]); //true
+assertArraysEqual(["yes", "no", "maybe"],["yes", "no"]); //false
+assertArraysEqual(["yes", "no", "maybe"],["yes", "no", 1]); //false
