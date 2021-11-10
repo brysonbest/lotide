@@ -18,6 +18,6 @@ describe("#head", () => {
     assert.strictEqual(head([]), );
   });
   it ("returns error for undefined", () => {
-    assert.strictEqual(head(), Error);
+    assert.throw(head, Error);
   });
 });
