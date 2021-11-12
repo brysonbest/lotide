@@ -1,17 +1,21 @@
 const without = require('../without');
-const assertArraysEqual = require('../assertArraysEqual');
+const assert = require('chai').assert;
 
-
-//test codes
-//console.log(without([1, 2, 3], [1])); // => [2, 3]
-//console.log(without(["1", "2", "3"], [1, 2, "3"])); // => ["1", "2"])
-
-// Make sure the original array was not altered by the without function
-const words = ["hello", "world", "lighthouse"];
-without(words, ["lighthouse"]);
-assertArraysEqual(words, ["hello", "world", "lighthouse"]); //true
-
-//assertion tests
-assertArraysEqual(without(words, ["lighthouse"]), ["hello", "world"]); //true
-assertArraysEqual(without([4, "5", 7, "Tomato"], [5, "Tomato"]), [4, 7, "Tomato"]); //false as type mismatch and tomato removed
-assertArraysEqual(without([4, "5", 7, "Tomato"], [5, "Tomato"]), [4, "5", 7]); //true
+describe("#without", () => {
+  const words = ["hello", "world", "lighthouse"];
+  it(`returns ["hello", "world"] for values 'lighthouse'`, () => {
+    assert.deepEqual(without(words,['lighthouse']), ["hello", "world"]);
+  });
+  it(`returns [1, 3, 4] for value [2] in original array [1, 2, 3, 4]`, () => {
+    assert.deepEqual(without([1,2,3,4], [2]), [1, 3, 4]);
+  });
+  it(`returns [4, 7] for removing 2 values from an array.`, () => {
+    assert.deepEqual(without([4, 5, 7, "Tomato"], [5, "Tomato"]), [4, 7]);
+  });
+  it("returns empty array for empty array", () => {
+    assert.deepEqual(without([]), []);
+  });
+  it("returns error for undefined", () => {
+    assert.throw(without, Error);
+  });
+});
