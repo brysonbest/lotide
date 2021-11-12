@@ -1,14 +1,32 @@
 const findKeyByValue = require('../findKeyByValue');
-const assertEqual = require('../assertEqual');
+const assert = require('chai').assert;
 
-//Test Code
-
-const bestTVShowsByGenre = {
-  reality: "The Real Housewives of Beverly Hills",
-  comedy: "The Good Place",
-  drama:  "How to Get Away With Murder"
-};
-
-assertEqual(findKeyByValue(bestTVShowsByGenre, "The Good Place"), "comedy");
-assertEqual(findKeyByValue(bestTVShowsByGenre, "Sailor Moon"), undefined);
-assertEqual(findKeyByValue(bestTVShowsByGenre, "The Real Housewives of Beverly Hills"), "reality");
+describe("#findKey", () => {
+  it(`returns "comedy" for "The Good Place"`, () => {
+    assert.strictEqual(findKeyByValue({
+      reality: "The Real Housewives of Beverly Hills",
+      comedy: "The Good Place",
+      drama:  "How to Get Away With Murder"
+    }, "The Good Place"), "comedy");
+  });
+  it(`returns undefined for item not listed in object`, () => {
+    assert.strictEqual(findKeyByValue({
+      reality: "The Real Housewives of Beverly Hills",
+      comedy: "The Good Place",
+      drama:  "How to Get Away With Murder"
+    }, "Sailor Moon"), undefined);
+  });
+  it("returns undefined for a blank string value", () => {
+    assert.strictEqual(findKeyByValue({
+      reality: "The Real Housewives of Beverly Hills",
+      comedy: "The Good Place",
+      drama:  "How to Get Away With Murder"
+    },""), undefined);
+  });
+  it("returns undefined for an empty object and a value", () => {
+    assert.strictEqual(findKeyByValue({}, "How to Get Away With Murder"), undefined);
+  });
+  it("throws error when no object or value are entered", () => {
+    assert.throw(findKeyByValue, Error);
+  });
+});
