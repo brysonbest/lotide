@@ -1,25 +1,23 @@
 const eqObjects = require('../eqObjects');
-const assertEqual = require('../assertEqual');
+const assert = require('chai').assert;
 
-//test codes
-//testing primitives
-const ab = { a: "1", b: "2" };
-const ba = { b: "2", a: "1" };
-//eqObjects(ab, ba); //true as identical contents
-assertEqual(eqObjects(ab, ba), true);
-
-const abc = { a: "1", b: "2", c: "3"};
-//eqObjects(ab, abc); //false as different lengths
-assertEqual(eqObjects(ab, abc), false);
-
-const aba = { a: "1", b: "3"};
-//eqObjects(ab, aba); //false as different numbers
-assertEqual(eqObjects(ab, aba), false);
-
-//testing arrays
-const cd = { c: "1", d: ["2", 3] };
-const dc = { d: ["2", 3], c: "1" };
-assertEqual(eqObjects(cd, dc), true); // => true
-
-const cd2 = { c: "1", d: ["2", 3, 4] };
-assertEqual(eqObjects(cd, cd2), false); // => false
+describe("#eqObjects", () => {
+  it(`returns true for two matching objects`, () => {
+    assert.strictEqual(eqObjects({ a: "1", b: "2" }, { b: "2", a: "1" }), true);
+  });
+  it(`returns false for two objects of different lengths`, () => {
+    assert.strictEqual(eqObjects({ a: "1", b: "2", c: "3"}, { a: "1", b: "2" }), false);
+  });
+  it("returns false for two different objects", () => {
+    assert.strictEqual(eqObjects({ a: "1", b: "3"}, { a: "1", b: "2" }), false);
+  });
+  it("returns true for two empty objects", () => {
+    assert.strictEqual(eqObjects({},{}), true);
+  });
+  it("returns true for arrays nested in objects", () => {
+    assert.strictEqual(eqObjects({ c: "1", d: ["2", 3] },{ d: ["2", 3], c: "1" }), true);
+  });
+  it("throws error when no objects are entered", () => {
+    assert.throw(eqObjects, Error);
+  });
+});
