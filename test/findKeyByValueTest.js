@@ -1,7 +1,7 @@
 const findKeyByValue = require('../findKeyByValue');
 const assert = require('chai').assert;
 
-describe("#findKey", () => {
+describe("#findKeyByValue", () => {
   it(`returns "comedy" for "The Good Place"`, () => {
     assert.strictEqual(findKeyByValue({
       reality: "The Real Housewives of Beverly Hills",
