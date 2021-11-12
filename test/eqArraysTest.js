@@ -11,6 +11,12 @@ describe("#eqArrays", () => {
   it("returns false for two different arrays", () => {
     assert.strictEqual(eqArrays([1,2,3], [1,2]), false);
   });
+  it("returns true for two matching nested arrays", () => {
+    assert.strictEqual(eqArrays([1,2,[3]], [1,2,[3]]), true);
+  });
+  it("returns false for two mismatched nested arrays", () => {
+    assert.strictEqual(eqArrays([[2, 3], [4]], [[2, 3], 4]), false);
+  });
   it("returns true for two empty arrays", () => {
     assert.strictEqual(eqArrays([],[]), true);
   });
