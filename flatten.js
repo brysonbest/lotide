@@ -5,14 +5,12 @@ const flatten = function(inputArray) {
 
   for (let element of inputArray) {
     if (Array.isArray(element)) {
-      for (let item of element) {
-        newArray.push(item);
-      }
+      let newEl = [].concat(flatten(element));
+      newArray = newArray.concat(flatten(newEl));
     } else {
       newArray.push(element);
     }
   }
-  
   return newArray;
 };
 
