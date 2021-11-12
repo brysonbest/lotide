@@ -14,6 +14,10 @@ const eqObjects = function(object1, object2) {
       if (!eqArrays(object1[obj], object2[obj])) {
         return false;
       }
+    } else if (typeof object1[obj] === 'object') {
+      if (!eqObjects(object1[obj], object2[obj])) {
+        return false;
+      }
     } else {
       if (object1[obj] !== object2[obj]) {
         return false;

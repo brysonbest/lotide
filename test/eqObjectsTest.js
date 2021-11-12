@@ -11,6 +11,12 @@ describe("#eqObjects", () => {
   it("returns false for two different objects", () => {
     assert.strictEqual(eqObjects({ a: "1", b: "3"}, { a: "1", b: "2" }), false);
   });
+  it("returns true for two objects with nested objects", () => {
+    assert.strictEqual(eqObjects({ a: { z: 1 }, b: 2 },{a: { z: 1 }, b: 2 }), true);
+  });
+  it("returns false for two objects with nested objects that don't match", () => {
+    assert.strictEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 },{ a: { z: 1 }, b: 2 }), false);
+  });
   it("returns true for two empty objects", () => {
     assert.strictEqual(eqObjects({},{}), true);
   });
