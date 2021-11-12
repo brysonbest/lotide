@@ -1,11 +1,23 @@
-const assertEqual = require('../assertEqual');
 const eqArrays = require('../eqArrays');
+const assert = require('chai').assert;
 
-//test cases
-assertEqual(eqArrays([1, 2, 3],), false); //one blank
-assertEqual(eqArrays([], []), true); //both blank
-assertEqual(eqArrays([1, 2, 3],[1, 2]), false); //different lengths
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true);
-assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false);
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true);
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false);
+describe("#eqArrays", () => {
+  it(`returns true for two matching arrays of numbers`, () => {
+    assert.strictEqual(eqArrays([1,2,3], [1,2,3]), true);
+  });
+  it(`returns true for two matching arrays of strings`, () => {
+    assert.strictEqual(eqArrays(["Hello","Hi","Wow"], ["Hello","Hi","Wow"]), true);
+  });
+  it("returns false for two different arrays", () => {
+    assert.strictEqual(eqArrays([1,2,3], [1,2]), false);
+  });
+  it("returns true for two empty arrays", () => {
+    assert.strictEqual(eqArrays([],[]), true);
+  });
+  it("returns false for two arrays where the types don't match", () => {
+    assert.strictEqual(eqArrays([1,2,3],[1,2,"3"]), false);
+  });
+  it("returns true when no array objects are entered", () => {
+    assert.strictEqual(eqArrays(), true);
+  });
+});
