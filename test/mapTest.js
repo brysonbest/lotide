@@ -1,15 +1,21 @@
 const map = require('../map');
-const assertArraysEqual = require('../assertArraysEqual');
+const assert = require('chai').assert;
 
-
-const places = ["Mexico", "Madrid", "New York"];
-
-assertArraysEqual(map(places, word => word[0]), ["M", "M", "N"]); //true
-
-const things = ["Potatoes", "Tables", "Pens"];
-
-assertArraysEqual(map(things, word => word.length), [8, 6, 4]); //true
-
-const numbers = [5, 10, 15, 20];
-
-assertArraysEqual(map(numbers, number => number * 10), [50, 100, 150, 200]); //true
+describe("#map", () => {
+  const places = ["Mexico", "Madrid", "New York"];
+  it(`returns ["M", "M", "N"] for callback word => word[0]`, () => {
+    assert.deepEqual(map(places,word => word[0]), ["M", "M", "N"]);
+  });
+  it(`returns [6, 6, 8] for callback word => word.length`, () => {
+    assert.deepEqual(map(places, word => word.length), [6, 6, 8]);
+  });
+  it(`returns [50, 100, 150, 200] for callback number => number * 10 on array [5, 10, 15, 20]`, () => {
+    assert.deepEqual(map([5, 10, 15, 20], number => number * 10), [50, 100, 150, 200]);
+  });
+  it("returns empty array for empty array", () => {
+    assert.deepEqual(map([]), []);
+  });
+  it("returns error for undefined", () => {
+    assert.throw(map, Error);
+  });
+});
