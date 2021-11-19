@@ -2,10 +2,11 @@
 const without = function(originalArray, values) {
   let newArray = originalArray.slice();
 
-  for (let i = 0; i < newArray.length; i++) {
+  for (let i = 0; i < originalArray.length; i++) {
     for (let j = 0; j < values.length; j++) {
       if (newArray[i] === values[j]) {
         newArray.splice(i, 1);
+        i--;
       }
     }
   }

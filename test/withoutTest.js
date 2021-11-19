@@ -18,4 +18,7 @@ describe("#without", () => {
   it("returns error for undefined", () => {
     assert.throw(without, Error);
   });
+  it(`returns ["2"] for ["1", "1", "1", "2", "3", "1" , "1"] and ["1", 2, "3"]`, () => {
+    assert.deepEqual(without(["1", "1", "1", "2", "3", "1" , "1"], ["1", 2, "3"]), ["2"]);
+  });
 });
