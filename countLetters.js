@@ -6,7 +6,7 @@ const countLetters = function(originalString) {
   }
   for (let char of originalString) {
     if (char !== ' ') {
-      let formatChar = char.toUpperCase();
+      let formatChar = char.toLowerCase();
       if (stringCount[formatChar]) {
         stringCount[formatChar] += 1;
       } else {

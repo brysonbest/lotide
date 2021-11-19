@@ -10,7 +10,7 @@ const letterPositions = function(sentence) {
   let i = 0;
   for (let char of sentence) {
     if (char !== ' ') {
-      let formatChar = char.toUpperCase();
+      let formatChar = char.toLowerCase();
       if (results[formatChar]) {
         results[formatChar].push(i);
       } else {
